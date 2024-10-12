@@ -57,7 +57,7 @@ You are able to do so many stuff in the game like walking, running, building, cr
 | ------------------- | ------------------------------------------------------------ |
 | `BudgetManager.cs` | Responsible for in game money system use to buy buildings |
 | `Interact.cs` | Responsible for in game interaction including open shop and building placement |
-| `Weapon.cs`  | Responsible for all in game weapon including melee weapon, controlling reload, swing, etc |
+| `PlayerMovement.cs`  | Responsible for the player movement and differentiate a spendable land |
 | `DayManager.cs`  | Responsible for random event appear everyday and day controller |
 | `WelfareManager.cs`  | Responsible for controlling the citizen welfare in game |
 | `etc`  | |
