@@ -36,103 +36,30 @@ The game was built using Unity Engine. Play the game from https://bisniskomodo.i
 ```
 <br>
 
-## 📜WEE Land Scripts Example (Interact)
-```
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+## 🕹️Game controls
 
-public class Interact : MonoBehaviour
-{
-    private bool canInteract = false;
-    private CanvasGroup shops;
-    public GameObject Buildings;
-    private BudgetManager budgetmanager;
-    private WelfareManager welfaremanager;
-    private EntertaintmentManager entertaintmentmanager;
-    private EducationManager educationmanager;
-    public int sellValue = 2;
-    private PlayerMovement playermovement;
+The following controls are bound in-game, for gameplay and testing.
 
-    void Start()
-    {
-        welfaremanager = FindObjectOfType<WelfareManager>().GetComponent<WelfareManager>();
-        entertaintmentmanager = FindObjectOfType<EntertaintmentManager>().GetComponent<EntertaintmentManager>();
-        educationmanager = FindObjectOfType<EducationManager>().GetComponent<EducationManager>();
-        budgetmanager = FindObjectOfType<BudgetManager>().GetComponent<BudgetManager>();
-        playermovement = FindObjectOfType<PlayerMovement>();
-    }
-    void Awake()
-    {
-        shops = GameObject.Find("Canvas/ShopMenu").GetComponent<CanvasGroup>();
-    }
-    
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            canInteract = true;
-        }
-    }
+| Key Binding       | Function          |
+| ----------------- | ----------------- |
+| W,A,S,D           | Standard movement |
+| E             | Open Shop/Interact              |
+| Left Click             | Buy           |
+| R             | Sell             |
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            canInteract = false;
-        }
-    }
+<br>
 
-    void Update()
-    {
-        if (canInteract && Input.GetKeyDown(KeyCode.E))
-        {
-            shops.alpha = 1f;
-            shops.blocksRaycasts = true;
-            shops.interactable = true;
-            playermovement.SetCanMove(false);
-        }
-    }
+##  📜Scripts and Features
 
-    public void EndInteraction()
-    {
-        shops.alpha = 0f;
-        shops.blocksRaycasts = false;
-        shops.interactable = false;
-        playermovement.SetCanMove(true);
-    }
+You are able to do so many stuff in the game like walking, running, building, crafting, shooting, hunting, and so much more thanks to tons of scripting has been implemented to the game
 
-    public void Builds(GameObject Building, int money, float welfaretoadd, float EntertaintmentToAdd, float educationadd, float welfarereduction, float entertaintmentreduction, float educationreduction)
-    {
-        if(Buildings != null)
-        {
-            Debug.Log("Building Occupied");
-            budgetmanager.AddMoney(money);
-            return;
-        }
-        Buildings = Instantiate(Building, transform.position, transform.rotation);
-        welfaremanager.welfareincrease(welfaretoadd);
-        entertaintmentmanager.entertaintmentincrease(EntertaintmentToAdd);
-        educationmanager.educationincrease(educationadd);
-        welfaremanager.welfarereduce(welfarereduction);
-        entertaintmentmanager.entertaintmentreduce(entertaintmentreduction);
-        educationmanager.educationreduce(educationreduction);
-    }
+|  Script       | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| `BudgetManager.cs` | Responsible for in game money system use to buy buildings |
+| `Interact.cs` | Responsible for in game interaction including open shop and building placement |
+| `Weapon.cs`  | Responsible for all in game weapon including melee weapon, controlling reload, swing, etc |
+| `DayManager.cs`  | Responsible for random event appear everyday and day controller |
+| `WelfareManager.cs`  | Responsible for controlling the citizen welfare in game |
+| `etc`  | |
 
-    public void SellBuilding()
-    {
-        if (Buildings != null)
-        {
-            budgetmanager.AddMoney(sellValue);  // Add money for selling the building
-            Destroy(Buildings);  // Destroy the building game object
-            Buildings = null;  // Reset the building reference
-        }
-        else
-        {
-            Debug.Log("No building to sell!");
-        }
-    }
-}
-```
+<br>
