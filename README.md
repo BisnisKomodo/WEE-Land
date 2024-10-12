@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# WEE-Land
-=======
 ## 🔴About
 WEE Land is a game that entirely forgoes combat system. Your main objective is to survive as long as possible maintaining the Welfare, Entertainment and Education meter for the citizen. You are given a limited budget to satisfy the need of the citizen. I create Citizen meter, Shop System, Budget system, Day system, Next day system and a random event which trigger every one day.Here's a small portion details about WEE Land development presented
 <br>
@@ -66,4 +63,3 @@ You are able to do so many stuff in the game like walking, running, building, cr
 | `etc`  | |
 
 <br>
->>>>>>> 5c82c58bc56bd9b383bd214667be6f324306e658
